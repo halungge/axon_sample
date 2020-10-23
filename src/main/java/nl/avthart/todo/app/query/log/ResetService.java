@@ -24,7 +24,7 @@ public class ResetService {
                 .orElseThrow(TrackingEventProcessorNotFoundException::new);
     }
 
-    public boolean replay(String trackingEventProcessorName, Long index) {
+    public boolean replay(String trackingEventProcessorName, Long index, TimedContext context) {
         TrackingEventProcessor trackingEventProcessor = this.getTrackingEventProcessor(trackingEventProcessorName);
         if (!trackingEventProcessor.isRunning()) {
             log.warn("Tracking event processor {} is not running in current instance or not running at all", trackingEventProcessorName);
@@ -34,7 +34,7 @@ public class ResetService {
         trackingEventProcessor.shutDown();
 
         try {
-            trackingEventProcessor.resetTokens(GapAwareTrackingToken.newInstance(index - 1, Collections.emptySortedSet()));
+            trackingEventProcessor.resetTokens(GapAwareTrackingToken.newInstance(index - 1, Collections.emptySortedSet()), context);
         } catch (UnableToClaimTokenException e) {
             // Ignore this exception and let the caller know setting the replay failed.
             log.warn("Unable to claim token for trackingEventProcessor {} on id {}", trackingEventProcessorName, index - 1, e);

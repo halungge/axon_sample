@@ -7,10 +7,9 @@ import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.AllowReplay;
 import org.axonframework.eventhandling.DisallowReplay;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.eventhandling.ReplayStatus;
 import org.axonframework.eventhandling.ResetHandler;
-import org.axonframework.eventhandling.SequenceNumber;
 import org.axonframework.eventhandling.Timestamp;
-import org.axonframework.eventhandling.replay.ResetContext;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -22,7 +21,10 @@ import java.time.format.DateTimeFormatter;
 @Component
 @ProcessingGroup("logHandler")
 @AllowReplay
-public class LogEventHandler {
+public class TimeBoundLogCreationHandler {
+
+    private Instant until;
+    private Instant from;
 
     private static DateTimeFormatter formatter =
             DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss.S" )
@@ -30,11 +32,14 @@ public class LogEventHandler {
 
 
     @EventHandler
-    public void on(TaskCreatedEvent creation, @Timestamp Instant timestamp, @SequenceNumber Long sequence){
-        final String title = creation.getTitle();
-        final String username = creation.getUsername();
-
-        log.info(String.format(" LOG HANDLER: now %s replaying events: event issued at %s:  task  %s, created by %s", LocalDateTime.now(), formatter.format(timestamp), title, username));
+    public void on(TaskCreatedEvent creation, @Timestamp Instant timestamp, ReplayStatus status){
+        if(status.equals(ReplayStatus.REPLAY)) {
+            final String title = creation.getTitle();
+            final String username = creation.getUsername();
+            if (until.isAfter(timestamp)) {
+                log.info(String.format(" LOG HANDLER: now %s replaying events: event issued at %s:  task  %s, created by %s", LocalDateTime.now(), formatter.format(timestamp), title, username));
+            }
+        }
 
     }
 
@@ -48,8 +53,11 @@ public class LogEventHandler {
     }
 
     @ResetHandler
-    public void onReset(ResetContext context){
-
+    public void onReset(TimedContext context) {
+        Timeboundaries bd = context.getPayload();
+        until = bd.getTo();
+        from = bd.getFrom();
     }
+
 
 }
