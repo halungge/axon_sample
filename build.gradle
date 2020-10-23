@@ -36,7 +36,7 @@ dependencies {
 	//compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: springVersion
 	implementation group: 'org.springframework.boot', name:'spring-boot-starter-actuator', version: springVersion
 
-		// https://mvnrepository.com/artifact/org.axonframework/axon-spring-boot-starter
+	// https://mvnrepository.com/artifact/org.axonframework/axon-spring-boot-starter
 	implementation 'org.axonframework:axon-spring-boot-starter:4.4.3', {
 		exclude group:'org.axonframework', module: 'axon-server-connector'
 	}

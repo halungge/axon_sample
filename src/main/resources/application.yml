@@ -7,5 +7,15 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+    #  ddl-auto: create
     #generate-ddl: true
+
+axon:
+  serializer:
+    general: default
+    events: jackson
+    messages: jackson
+
+lombok:
+  anyConstructor:
+    addConstructorProperties: true
