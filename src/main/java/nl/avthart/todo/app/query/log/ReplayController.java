@@ -18,8 +18,8 @@ public class ReplayController {
     @RequestMapping(value = "/api/reset", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void replayLogHandler(){
-      
-        resetService.replay("logHandler", 15L);
+      log.info("replaying logHandler");
+        resetService.replay("logHandler", 0L);
 
     }
 
