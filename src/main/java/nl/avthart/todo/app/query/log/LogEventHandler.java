@@ -7,7 +7,10 @@ import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.AllowReplay;
 import org.axonframework.eventhandling.DisallowReplay;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.eventhandling.ResetHandler;
+import org.axonframework.eventhandling.SequenceNumber;
 import org.axonframework.eventhandling.Timestamp;
+import org.axonframework.eventhandling.replay.ResetContext;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -27,7 +30,7 @@ public class LogEventHandler {
 
 
     @EventHandler
-    public void on(TaskCreatedEvent creation, @Timestamp Instant timestamp){
+    public void on(TaskCreatedEvent creation, @Timestamp Instant timestamp, @SequenceNumber Long sequence){
         final String title = creation.getTitle();
         final String username = creation.getUsername();
 
@@ -41,6 +44,11 @@ public class LogEventHandler {
         log.info(String.format(" LOG HANDLER: now %s replaying events: event issued at %s:  task  %s, new title %s",
                 LocalDateTime.now(), formatter.format(eventTimestamp), event.getId(), event.getTitle()));
 
+
+    }
+
+    @ResetHandler
+    public void onReset(ResetContext context){
 
     }
 
