@@ -8,7 +8,7 @@ public class TenantRoutingDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
-        return ThreadTenantContext.getCurrentTenant().orElse(TenantConnectionProvider.DEFAULT_SCHEMA);
+        return ThreadTenantContext.getCurrentTenant();
     }
 
     /**
