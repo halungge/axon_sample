@@ -1,6 +1,6 @@
 package ch.mlz.axon.todo.app.configuration;
 
-import ch.mlz.axon.todo.app.TenantInterceptor;
+import ch.mlz.axon.todo.app.tenancy.TenantInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

@@ -1,4 +1,4 @@
-package ch.mlz.axon.todo.app;
+package ch.mlz.axon.todo.app.tenancy;
 
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -22,8 +22,7 @@ public class TenantInterceptor implements HandlerInterceptor {
         return true;
     }
 
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-                            @Nullable ModelAndView modelAndView) {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) {
         ThreadTenantContext.clear();
     }
 }
