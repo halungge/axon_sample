@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '13'
 
 springBoot {
-	mainClassName = 'nl.avthart.todo.app.Application'
+	mainClassName = 'ch.mlz.axon.todo.app.Application'
 }
 
 

@@ -18,7 +18,7 @@ implementation 'org.axonframework:axon-spring-boot-starter:4.4.3', {
  ```
 
 ### checkout replaying mechano: replay up to given point in time
-added a simple logging event handler (nl.avthart.todo.app.query.log) that logs creation events up to a given point in time to the console.
+added a simple logging event handler (ch.mlz.axon.todo.app.query.log) that logs creation events up to a given point in time to the console.
 It runs only in replay mode.
 
 ### run event store with liquibase
