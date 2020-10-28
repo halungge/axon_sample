@@ -1,12 +1,14 @@
 package ch.mlz.axon.todo.app.tenancy;
 
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Component
 public class TenantInterceptor implements HandlerInterceptor {
 
     public static final String TENANT_HEADER = "X-tenant";
