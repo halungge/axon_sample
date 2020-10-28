@@ -7,8 +7,11 @@ spring:
 
   jpa:
     hibernate:
-    #  ddl-auto: create
-    #generate-ddl: true
+    ddl-auto: update
+    generate-ddl: true
+
+  liquibase:
+    enabled: false
 
 axon:
   serializer:
