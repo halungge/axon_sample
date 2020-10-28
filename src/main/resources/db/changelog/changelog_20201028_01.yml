@@ -1,0 +1,290 @@
+databaseChangeLog:
+- changeSet:
+    id: 1603907667887-1
+    author: ml (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: association_value_entry_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: association_key
+            type: VARCHAR(255)
+        - column:
+            name: association_value
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: saga_id
+            type: VARCHAR(255)
+        - column:
+            name: saga_type
+            type: VARCHAR(255)
+        tableName: association_value_entry
+- changeSet:
+    id: 1603907667887-2
+    author: ml (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: domain_event_entry_pkey
+            name: global_index
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: event_identifier
+            type: VARCHAR(255)
+        - column:
+            name: meta_data
+            type: OID
+        - column:
+            constraints:
+              nullable: false
+            name: payload
+            type: OID
+        - column:
+            name: payload_revision
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: payload_type
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: time_stamp
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: aggregate_identifier
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: sequence_number
+            type: BIGINT
+        - column:
+            name: type
+            type: VARCHAR(255)
+        tableName: domain_event_entry
+- changeSet:
+    id: 1603907667887-3
+    author: ml (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: saga_entry_pkey
+            name: saga_id
+            type: VARCHAR(255)
+        - column:
+            name: revision
+            type: VARCHAR(255)
+        - column:
+            name: saga_type
+            type: VARCHAR(255)
+        - column:
+            name: serialized_saga
+            type: OID
+        tableName: saga_entry
+- changeSet:
+    id: 1603907667887-4
+    author: ml (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: snapshot_event_entry_pkey
+            name: aggregate_identifier
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: snapshot_event_entry_pkey
+            name: sequence_number
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: snapshot_event_entry_pkey
+            name: type
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: event_identifier
+            type: VARCHAR(255)
+        - column:
+            name: meta_data
+            type: OID
+        - column:
+            constraints:
+              nullable: false
+            name: payload
+            type: OID
+        - column:
+            name: payload_revision
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: payload_type
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: time_stamp
+            type: VARCHAR(255)
+        tableName: snapshot_event_entry
+- changeSet:
+    id: 1603907667887-5
+    author: ml (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: task_entry_pkey
+            name: id
+            type: UUID
+        - column:
+            constraints:
+              nullable: false
+            name: completed
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: starred
+            type: BOOLEAN
+        - column:
+            name: title
+            type: VARCHAR(255)
+        - column:
+            name: username
+            type: VARCHAR(255)
+        tableName: task_entry
+- changeSet:
+    id: 1603907667887-6
+    author: ml (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: token_entry_pkey
+            name: processor_name
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: token_entry_pkey
+            name: segment
+            type: INTEGER
+        - column:
+            name: owner
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: timestamp
+            type: VARCHAR(255)
+        - column:
+            name: token
+            type: OID
+        - column:
+            name: token_type
+            type: VARCHAR(255)
+        tableName: token_entry
+- changeSet:
+    id: 1603907667887-7
+    author: ml (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: saga_id
+        - column:
+            name: saga_type
+        indexName: idxgv5k1v2mh6frxuy5c0hgbau94
+        tableName: association_value_entry
+- changeSet:
+    id: 1603907667887-8
+    author: ml (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: saga_type
+        - column:
+            name: association_key
+        - column:
+            name: association_value
+        indexName: idxk45eqnxkgd8hpdn6xixn8sgft
+        tableName: association_value_entry
+- changeSet:
+    id: 1603907667887-9
+    author: ml (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: aggregate_identifier, sequence_number
+        constraintName: uk8s1f994p4la2ipb13me2xqm1w
+        tableName: domain_event_entry
+- changeSet:
+    id: 1603907667887-10
+    author: ml (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: event_identifier
+        constraintName: uk_fwe6lsa8bfo6hyas6ud3m8c7x
+        tableName: domain_event_entry
+- changeSet:
+    id: 1603907667887-11
+    author: ml (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: event_identifier
+        constraintName: uk_e1uucjseo68gopmnd0vgdl44h
+        tableName: snapshot_event_entry
+- changeSet:
+    id: 1603907667887-12
+    author: ml (generated)
+    changes:
+    - createSequence:
+        cacheSize: 1
+        cycle: false
+        dataType: bigint
+        incrementBy: 1
+        maxValue: 9223372036854775807
+        minValue: 1
+        sequenceName: hibernate_sequence
+        startValue: 1
+
