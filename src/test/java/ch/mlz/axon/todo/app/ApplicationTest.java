@@ -1,10 +1,10 @@
-package com.example.demo;
+package ch.mlz.axon.todo.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AxonApplicationTests {
+class ApplicationTest {
 
 	@Test
 	void contextLoads() {
