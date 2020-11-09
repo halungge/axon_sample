@@ -1,0 +1,1 @@
+./liquibase --url=jdbc:postgresql://localhost:5432/postgres --username=pg --password=password --changeLogFile=./changelog.yml --driver=org.postgresql.Driver --classpath=./liquibase_drivers/postgresql-42.2.8.jar generateChangeLog

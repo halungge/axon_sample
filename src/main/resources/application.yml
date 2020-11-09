@@ -1,14 +1,18 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/axontest
     username: pg
     password: password
     driver-class-name: org.postgresql.Driver
 
   jpa:
+    generate-ddl: false
     hibernate:
-    #  ddl-auto: create
-    #generate-ddl: true
+      ddl-auto: none
+
+
+  liquibase:
+    enabled: true
 
 axon:
   serializer:
