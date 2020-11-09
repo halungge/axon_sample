@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: db.changelog_20201028_axon_tables.yaml
+      relativeToChangelogFile: true
