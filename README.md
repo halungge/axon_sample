@@ -22,7 +22,8 @@ added a simple logging event handler (ch.mlz.axon.todo.app.query.log) that logs 
 It runs only in replay mode.
 
 ### run event store with liquibase
-- TODO add liquibase files
+- Axon tables are created by liquibase. For the changeset see `src/main/resources/db/changelog/db.changelog_20201028_axon_tables.yml`
+The changeset files was created with liquibase from existing tables: see command in `liquibase_initial` 
 
 ### Multitenancy
 -TODO run multitenant application (schema per tenant)
