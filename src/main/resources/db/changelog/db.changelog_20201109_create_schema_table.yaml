@@ -1,0 +1,16 @@
+databaseChangeLog:
+
+  - changeSet:
+      author: ml
+      id: 1
+      changes:
+        - createTable:
+            tableName: customer_schemata
+            columns:
+              - column:
+                  name: schema_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_user_schema
