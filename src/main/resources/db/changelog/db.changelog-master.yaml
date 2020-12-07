@@ -5,6 +5,3 @@ databaseChangeLog:
   - include:
       file: db.changelog_20201109_insert_schema_name.yaml
       relativeToChangelogFile: true
-  - include:
-      file: db.changelog_20201028_axon_tables.yaml
-      relativeToChangelogFile: true
