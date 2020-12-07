@@ -1,5 +1,6 @@
 package ch.mlz.axon.todo.app.tenancy;
 
+import ch.mlz.axon.todo.app.Application;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.MultiTenancyStrategy;
@@ -29,23 +30,15 @@ public class HibernateConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, MultiTenantConnectionProvider connectionProvider, CurrentTenantIdentifierResolver tenantResolver){
-        Map<String, Object> properties = new HashMap<>(jpaProperties.getProperties());
-
-        properties.put(Environment.MULTI_TENANT, MultiTenancyStrategy.SCHEMA);
-        properties.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, connectionProvider);
-        properties.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, tenantResolver);
-        properties.put(Environment.FORMAT_SQL, true);
-        properties.put(Environment.SHOW_SQL, true);
-        properties.put(Environment.HBM2DDL_AUTO, "update");
-        properties.put(Environment.HBM2DDL_CREATE_SCHEMAS, true);
-
-        properties.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-
 
         LocalContainerEntityManagerFactoryBean entityManagerBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerBean.setDataSource(dataSource);
-        entityManagerBean.setPackagesToScan("ch.mlz.axon");
+        entityManagerBean.setPackagesToScan(Application.class.getPackageName());
         entityManagerBean.setJpaVendorAdapter(this.jpaVendorAdapter());
+        Map<String, Object> properties = new HashMap<>(jpaProperties.getProperties());
+        properties.put(Environment.MULTI_TENANT, MultiTenancyStrategy.SCHEMA);
+        properties.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, connectionProvider);
+        properties.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, tenantResolver);
         entityManagerBean.setJpaPropertyMap(properties);
         return entityManagerBean;
     }

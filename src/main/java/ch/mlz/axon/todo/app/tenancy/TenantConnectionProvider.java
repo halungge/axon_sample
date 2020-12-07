@@ -56,7 +56,7 @@ public class TenantConnectionProvider implements MultiTenantConnectionProvider {
 
     @Override
     public boolean supportsAggressiveRelease() {
-        // TODO or false??
+        // TODO or true??
         return false;
     }
 
