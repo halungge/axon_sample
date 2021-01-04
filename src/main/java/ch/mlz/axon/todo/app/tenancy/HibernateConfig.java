@@ -28,7 +28,7 @@ public class HibernateConfig {
         return new HibernateJpaVendorAdapter();
     }
 
-    @Bean
+    @Bean(name="entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, MultiTenantConnectionProvider connectionProvider, CurrentTenantIdentifierResolver tenantResolver){
 
         LocalContainerEntityManagerFactoryBean entityManagerBean = new LocalContainerEntityManagerFactoryBean();
