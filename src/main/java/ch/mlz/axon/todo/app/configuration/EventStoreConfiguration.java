@@ -10,5 +10,12 @@ public class EventStoreConfiguration {
         return JpaEventStorageEngine.builder()
                 .build();
     }
+    //TODO [mulittenancy] do we need this)
+   /* @Bean
+    public EventStorageEngine eventStore(DataSource dataSource, EntityManagerProvider provider) throws SQLException {
+        return JpaEventStorageEngine.builder().dataSource(dataSource).entityManagerProvider(provider)
+                .build();
+    }*/
+
 
 }
