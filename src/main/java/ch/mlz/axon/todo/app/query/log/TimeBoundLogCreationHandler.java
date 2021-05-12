@@ -1,8 +1,8 @@
 package ch.mlz.axon.todo.app.query.log;
 
-import lombok.extern.slf4j.Slf4j;
 import ch.mlz.axon.todo.app.domain.task.events.TaskCreatedEvent;
 import ch.mlz.axon.todo.app.domain.task.events.TaskTitleModifiedEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.AllowReplay;
 import org.axonframework.eventhandling.DisallowReplay;
@@ -10,7 +10,6 @@ import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.ReplayStatus;
 import org.axonframework.eventhandling.ResetHandler;
 import org.axonframework.eventhandling.Timestamp;
-import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -18,7 +17,6 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 @Slf4j
-@Component
 @ProcessingGroup("logHandler")
 @AllowReplay
 public class TimeBoundLogCreationHandler {
